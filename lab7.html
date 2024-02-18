@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Square Slider</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .slider {
+    width: 100px;
+    height: 100px;
+    background-color: #ff6347; /* Initial background color */
+    position: absolute;
+    transition: all 1s ease;
+  }
+</style>
+</head>
+<body>
+
+<div class="slider" id="slider"></div>
+
+<script>
+  const slider = document.getElementById('slider');
+  let isMovingDown = true;
+
+  function slide() {
+    const windowHeight = window.innerHeight;
+    const sliderHeight = slider.offsetHeight;
+
+    if (isMovingDown) {
+      slider.style.top = `${windowHeight - sliderHeight}px`;
+      slider.style.backgroundColor = '#4682b4'; // Change background color
+    } else {
+      slider.style.top = '0';
+      slider.style.backgroundColor = '#ff6347'; // Change background color
+    }
+
+    isMovingDown = !isMovingDown;
+  }
+
+  // Initially start the slide animation
+  setInterval(slide, 2000);
+</script>
+
+</body>
+</html>

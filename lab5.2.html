@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Updates</title>
+  </head>
+  <body>
+    <div id="newsContainer"></div>
+    <button onclick="stopUpdating()">Stop Updating</button>
+
+    <script>
+      let news = [
+        {
+          id: 1,
+          title: "Election Results",
+          content: "Newly elected minister...",
+        },
+        { id: 2, title: "Sporting Success", content: "World Cup winners..." },
+        {
+          id: 3,
+          title: "Tornado Warning",
+          content: "Residents should prepare...",
+        },
+      ];
+
+      function populateNews() {
+        let newsContainer = document.getElementById("newsContainer");
+        newsContainer.innerHTML = "";
+        news.forEach((item) => {
+          let newsItem = document.createElement("div");
+          newsItem.innerHTML = `<h2>${item.title}</h2><p>${item.content}</p>`;
+          newsContainer.appendChild(newsItem);
+        });
+      }
+
+      populateNews();
+
+      function addNews(title, content) {
+        let newId = news.length + 1;
+        news.push({ id: newId, title: title, content: content });
+      }
+
+      let intervalID = setInterval(function () {
+        addNews("Breaking News", "Something important just happened...");
+        addNews("New Discovery", "Scientists make groundbreaking discovery...");
+        populateNews();
+      }, 5000);
+
+      function stopUpdating() {
+        clearInterval(intervalID);
+      }
+    </script>
+  </body>
+</html>
